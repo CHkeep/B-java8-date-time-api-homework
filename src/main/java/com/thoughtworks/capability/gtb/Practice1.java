@@ -18,8 +18,7 @@ public class Practice1 {
 
     LocalDate laborDayTime = date.getMonthValue() < 5 ? LocalDate.of(currentYear + 0,5,1): LocalDate.of(currentYear+1,5,1);
     Period next = Period.between(date, laborDayTime);
-//    int day = next.getDays();
-    int day = Math.abs(Math.toIntExact(ChronoUnit.DAYS.between(laborDayTime, date)));
+    long day = ChronoUnit.DAYS.between(date,laborDayTime);
     return day;
   }
 }

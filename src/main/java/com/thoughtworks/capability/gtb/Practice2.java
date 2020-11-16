@@ -1,6 +1,9 @@
 package com.thoughtworks.capability.gtb;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * 对任意日期获取下一个工作日, 不考虑节假日
@@ -11,6 +14,11 @@ import java.time.LocalDate;
 public class Practice2 {
 
   public static LocalDate getNextWorkDate(LocalDate date) {
-    return null;
+      LocalDate result = date.plusDays(1);
+
+      while (result.getDayOfWeek().getValue() >= 6 ){
+            result = result.plusDays(1);
+      }
+            return result;
   }
 }
