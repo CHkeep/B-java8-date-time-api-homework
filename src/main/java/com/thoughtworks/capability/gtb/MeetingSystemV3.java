@@ -1,6 +1,8 @@
 package com.thoughtworks.capability.gtb;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -26,14 +28,18 @@ public class MeetingSystemV3 {
     LocalDateTime meetingTime = LocalDateTime.parse(timeStr, formatter);
 
     LocalDateTime now = LocalDateTime.now();
+    ZoneId zoneId = ZoneId.of("America/Chicago");
     if (now.isAfter(meetingTime)) {
       LocalDateTime tomorrow = now.plusDays(1);
       int newDayOfYear = tomorrow.getDayOfYear();
       meetingTime = meetingTime.withDayOfYear(newDayOfYear);
 
+      ZonedDateTime zonedDateTime = ZonedDateTime.of(meetingTime, zoneId);
       // 格式化新会议时间
-      String showTimeStr = formatter.format(meetingTime);
-      System.out.println(showTimeStr);
+      String showTimeStr = formatter.format(zonedDateTime);
+
+      System.out.println( showTimeStr);
+      System.out.println(zonedDateTime);
     } else {
       System.out.println("会议还没开始呢");
     }
